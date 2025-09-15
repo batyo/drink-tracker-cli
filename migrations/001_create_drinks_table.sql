@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS drinks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL,
+    name TEXT NOT NULL,
+    volume_ml REAL NOT NULL,
+    abv REAL NOT NULL
+);
