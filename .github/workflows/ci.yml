@@ -1,0 +1,32 @@
+name: PHP Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+
+    steps:
+      # リポジトリを取得
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # PHP をセットアップ
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: sqlite
+          coverage: none
+
+      # Composer 依存関係をインストール
+      - name: Install dependencies
+        run: composer install --no-progress --no-interaction --prefer-dist
+
+      # PHPUnit 実行
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --testdox
